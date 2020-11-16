@@ -3,7 +3,7 @@ package com.mastela.wifi.autopassw.router;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -25,9 +25,8 @@ public class GestorRouterServiceImpl
 	public WebDriver loggin ( )
 	{
 
-		System.setProperty ( "webdriver.gecko.driver", "C:\\dev\\geckodriver.exe" );
-		WebDriver driver = new FirefoxDriver ( );
-
+		// System.setProperty ( "webdriver.gecko.driver", "C:\\dev\\geckodriver.exe" );
+		WebDriver driver = new HtmlUnitDriver ( true );
 		driver.get ( "http://192.168.1.1" );
 		WebElement username = driver.findElement ( By.name ( "Username" ) );
 		username.sendKeys ( userName );
@@ -50,6 +49,7 @@ public class GestorRouterServiceImpl
 		passWifi.sendKeys ( generatedString );
 		WebElement submit = paginaWeb.findElement ( By.id ( "Btn_Submit" ) );
 		submit.click ( );
-		paginaWeb.close ( );
+		// paginaWeb.close ( );
 	}
+
 }
